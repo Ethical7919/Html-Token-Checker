@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+<head>
+    <title>Token Checker - Mush</title>
+</head>
+
+<body>
+
+
+    <style>
+        body {
+            background-image: url('https://c.wallhere.com/photos/af/d2/Discord_discordapp_discord_background-1278375.jpg!d');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+    </style>
+
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <center>
+            <h1>
+                <font color="white">Token Checker</font>
+            </h1>
+            <div id="title">
+                <font color="white">Enter Your Discord Token</div>
+            <input id="token" type="text" name="token">
+            <button type="submit" name="submit" onclick="submit()">Check</button>
+            <div id="response"></div>
+            By Mush
+    </div>
+    <script>
+        function submit() {
+            var input = document.getElementById("token").value;
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://discordapp.com/api/v8/users/@me/guilds', true);
+            xhr.setRequestHeader('Authorization', `${input}`)
+            xhr.onload = function() {
+                if (xhr.response == '{"message": "401: Unauthorized", "code": 0}') {
+                    document.getElementById("response").innerHTML = "<br />Invalid token"
+                } else {
+                    document.getElementById("response").innerHTML = "<br />Valid Token"
+                }
+            }
+            xhr.send();
+
+        }
+    </script>
