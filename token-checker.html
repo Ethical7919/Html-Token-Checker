@@ -28,13 +28,13 @@
             <input id="token" type="text" name="token">
             <button type="submit" name="submit" onclick="submit()">Check</button>
             <div id="response"></div>
-            By Ethical
+            By Ryanz
     </div>
     <script>
         function submit() {
             var input = document.getElementById("token").value;
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://discordapp.com/api/v8/users/@me/guilds', true);
+            xhr.open('GET', 'https://discordapp.com/api/v9/users/@me/guilds', true);
             xhr.setRequestHeader('Authorization', `${input}`)
             xhr.onload = function() {
                 if (xhr.response == '{"message": "401: Unauthorized", "code": 0}') {
